@@ -16,6 +16,7 @@ using NumKit;
 
 Factorial.Compute(5); // 120
 Fibonacci.Compute(10); // 55
+Fibonacci.ComputeBig(100); // 354224848179261915075
 ```
 
 ## Tests
@@ -34,3 +35,4 @@ Every change starts with a spec in `specs/NNN-name/spec.md`.
 |---|---|
 | [001-factorial](specs/001-factorial/spec.md) | `Factorial.Compute(n)` |
 | [002-fibonacci](specs/002-fibonacci/spec.md) | `Fibonacci.Compute(n)` |
+| [003-fibonacci-validation-bigint](specs/003-fibonacci-validation-bigint/spec.md) | input validation, `Fibonacci.ComputeBig(n)` |
