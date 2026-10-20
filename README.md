@@ -15,6 +15,7 @@ Twin repositories have the same history in other languages: `eval-platform-fibon
 using NumKit;
 
 Factorial.Compute(5); // 120
+Fibonacci.Compute(10); // 55
 ```
 
 ## Tests
@@ -32,3 +33,4 @@ Every change starts with a spec in `specs/NNN-name/spec.md`.
 | Spec | Feature |
 |---|---|
 | [001-factorial](specs/001-factorial/spec.md) | `Factorial.Compute(n)` |
+| [002-fibonacci](specs/002-fibonacci/spec.md) | `Fibonacci.Compute(n)` |
