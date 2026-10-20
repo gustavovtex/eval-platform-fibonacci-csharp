@@ -1,3 +1,4 @@
+using System.Numerics;
 using NumKit;
 using Xunit;
 
@@ -24,5 +25,31 @@ public class FibonacciTests
     {
         Assert.Equal(92, Fibonacci.MaxInput);
         Assert.Equal(7540113804746346429L, Fibonacci.Compute(92));
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(93)]
+    public void FibonacciRejectsOutOfRangeIntegers(int n) =>
+        Assert.Throws<ArgumentOutOfRangeException>(() => Fibonacci.Compute(n));
+
+    [Fact]
+    public void ComputeBigAgreesWithComputeUpToTheLimit()
+    {
+        for (int n = 0; n <= Fibonacci.MaxInput; n++) Assert.Equal(new BigInteger(Fibonacci.Compute(n)), Fibonacci.ComputeBig(n));
+    }
+
+    [Fact]
+    public void ComputeBigGoesBeyondTheLimit()
+    {
+        Assert.Equal(BigInteger.Parse("14472334024676221"), Fibonacci.ComputeBig(79));
+        Assert.Equal(BigInteger.Parse("354224848179261915075"), Fibonacci.ComputeBig(100));
+    }
+
+    [Fact]
+    public void ComputeBigValidatesInputWithNoUpperBound()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => Fibonacci.ComputeBig(-1));
+        Assert.True(Fibonacci.ComputeBig(1000) > BigInteger.Zero);
     }
 }
