@@ -4,6 +4,9 @@ namespace NumKit;
 
 public static class Fibonacci
 {
+    /// <summary>The longest sequence Sequence builds (specs/004-fibonacci-sequence).</summary>
+    public const int MaxSequenceLength = 10000;
+
     /// <summary>The largest n whose Fibonacci number fits in a long.</summary>
     public const int MaxInput = 92;
 
@@ -34,5 +37,23 @@ public static class Fibonacci
         BigInteger previous = BigInteger.Zero, current = BigInteger.One;
         for (int i = 1; i < n; i++) (previous, current) = (current, previous + current);
         return current;
+    }
+
+    /// <summary>[F(0), ..., F(count - 1)], built in one pass (specs/004-fibonacci-sequence). Every call returns a new array.</summary>
+    public static BigInteger[] Sequence(int count)
+    {
+        CheckNonNegative("Sequence", count);
+        if (count > MaxSequenceLength)
+        {
+            throw new ArgumentOutOfRangeException(nameof(count), count, $"Sequence expects count <= {MaxSequenceLength}, got {count}");
+        }
+        var sequence = new BigInteger[count];
+        BigInteger previous = BigInteger.Zero, current = BigInteger.One;
+        for (int i = 0; i < count; i++)
+        {
+            sequence[i] = previous;
+            (previous, current) = (current, previous + current);
+        }
+        return sequence;
     }
 }
