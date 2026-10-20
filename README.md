@@ -1,0 +1,34 @@
+# eval-platform-fibonacci-csharp
+
+Small number utilities in plain C#, with no dependencies.
+
+This repository is a fixture for the [eval platform](https://github.com/vtex/eval-platform): its
+pull requests are small, each one carries its own spec under `specs/`, and the whole test suite
+runs in under a second. That makes it a cheap way to check that an evaluation works end to end,
+locally and in production. It is not meant to tell models apart: the tasks are too easy for that.
+
+Twin repositories have the same history in other languages: `eval-platform-fibonacci-node`, `eval-platform-fibonacci-python`, `eval-platform-fibonacci-go`, `eval-platform-fibonacci-rust`.
+
+## Usage
+
+```csharp
+using NumKit;
+
+Factorial.Compute(5); // 120
+```
+
+## Tests
+
+```sh
+dotnet test tests/NumKit.Tests
+```
+
+.NET 8 SDK or newer. The tests use xUnit, restored from NuGet on the first run; the library itself has no dependencies.
+
+## Specs
+
+Every change starts with a spec in `specs/NNN-name/spec.md`.
+
+| Spec | Feature |
+|---|---|
+| [001-factorial](specs/001-factorial/spec.md) | `Factorial.Compute(n)` |
